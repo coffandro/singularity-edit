@@ -218,7 +218,7 @@ namespace Singularity.Apps {
             var file_sec = new GLib.Menu ();
             file_sec.append ("Save As…",  "app.save-as");
             file_sec.append ("Revert",    "app.revert");
-            file_sec.append ("Settings",  "app.preferences");
+            file_sec.append ("Settings",  "app.settings");
             menu.append_section ("File", file_sec);
 
             var edit_sec = new GLib.Menu ();
@@ -473,7 +473,7 @@ namespace Singularity.Apps {
             try {
                 Singularity.Shell.ShellService shell = Bus.get_proxy_sync (
                     BusType.SESSION, "dev.sinty.desktop", "/dev/sinty/Shell");
-                shell.open_settings ("apps");
+                shell.open_app_settings ("dev.sinty.edit");
             } catch (Error e) {
                 warning ("Failed to open settings: %s", e.message);
             }

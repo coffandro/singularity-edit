@@ -48,7 +48,7 @@ namespace Singularity.Apps {
             var file_sec = new GLib.Menu ();
             file_sec.append ("Save As…",  "app.save-as");
             file_sec.append ("Revert",    "app.revert");
-            file_sec.append ("Settings",  "app.preferences");
+            file_sec.append ("Settings",  "app.settings");
             menu.append_section ("File", file_sec);
 
             var edit_sec = new GLib.Menu ();
@@ -120,7 +120,10 @@ namespace Singularity.Apps {
             add_act ("toggle-md-preview", on_toggle_md_preview);
             add_act ("fullscreen",     on_fullscreen);
             add_act ("revert",         on_revert);
-            add_act ("preferences",    on_preferences);
+
+            var act_settings = new SimpleAction ("settings", null);
+            act_settings.activate.connect (() => edit_win?.show_preferences ());
+            add_action (act_settings);
         }
 
         private delegate void ActionHandler ();
@@ -202,7 +205,6 @@ namespace Singularity.Apps {
         private void on_toggle_md_preview () { edit_win?.toggle_md_preview (); }
         private void on_fullscreen ()     { edit_win?.toggle_fullscreen (); }
         private void on_revert ()         { edit_win?.revert_current (); }
-        private void on_preferences ()   { edit_win?.show_preferences (); }
 
         private void setup_styles () {
             var provider = new Gtk.CssProvider ();
