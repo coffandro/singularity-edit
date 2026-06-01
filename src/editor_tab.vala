@@ -134,7 +134,7 @@ namespace Singularity.Apps {
             _close_confirm_bar = new Gtk.InfoBar ();
             _close_confirm_bar.message_type = Gtk.MessageType.WARNING;
             _close_confirm_bar.show_close_button = false;
-            var lbl = new Label ("Save changes to \"%s\"?".printf (title.replace ("• ", "")));
+            var lbl = new Label (_("Save changes to \"%s\"?").printf (title.replace ("• ", "")));
             lbl.xalign = 0f;
             _close_confirm_bar.add_child (lbl);
             _close_confirm_bar.add_button ("Save",    Gtk.ResponseType.YES);

@@ -183,7 +183,7 @@ namespace Singularity.Apps {
             header.margin_end   = 6;
             header.add_css_class ("edit-outline-header");
 
-            header_lbl = new Label ("<small><b>OUTLINE</b></small>");
+            header_lbl = new Label (_("<small><b>OUTLINE</b></small>"));
             header_lbl.use_markup = true;
             header_lbl.xalign = 0;
             header_lbl.hexpand = true;
@@ -192,7 +192,7 @@ namespace Singularity.Apps {
 
             var close_btn = new Gtk.Button.from_icon_name ("window-close-symbolic");
             close_btn.add_css_class ("flat");
-            close_btn.tooltip_text = "Close panel";
+            close_btn.tooltip_text = _("Close panel");
             close_btn.clicked.connect (() => close_requested ());
             header.append (close_btn);
 
@@ -205,7 +205,7 @@ namespace Singularity.Apps {
             stack.vexpand = true;
             stack.height_request = 180;
 
-            empty_label = new Label ("No symbols in this file");
+            empty_label = new Label (_("No symbols in this file"));
             empty_label.add_css_class ("dim-label");
             empty_label.valign = Align.CENTER;
             empty_label.halign = Align.CENTER;
@@ -228,9 +228,9 @@ namespace Singularity.Apps {
 
         public void set_title_suffix (string? suffix) {
             if (suffix == null || suffix == "")
-                header_lbl.label = "<small><b>OUTLINE</b></small>";
+                header_lbl.label = _("<small><b>OUTLINE</b></small>");
             else
-                header_lbl.label = "<small><b>OUTLINE</b> · %s</small>".printf (
+                header_lbl.label = _("<small><b>OUTLINE</b> · %s</small>").printf (
                     Markup.escape_text (suffix));
         }
 
@@ -265,7 +265,7 @@ namespace Singularity.Apps {
                 name_lbl.hexpand = true;
                 row_box.append (name_lbl);
 
-                var line_lbl = new Label ("L%d".printf (e.line + 1));
+                var line_lbl = new Label (_("L%d").printf (e.line + 1));
                 line_lbl.add_css_class ("dim-label");
                 line_lbl.add_css_class ("caption");
                 row_box.append (line_lbl);

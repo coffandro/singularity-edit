@@ -48,7 +48,7 @@ namespace Singularity.Apps {
         }
 
         private void _build_ui () {
-            set_title ("Edit");
+            set_title (_("Edit"));
             set_default_size (1100, 700);
 
             //  Stack: welcome ↔ editor
@@ -59,8 +59,8 @@ namespace Singularity.Apps {
             // Welcome page
             var wp = new Singularity.Widgets.WelcomePage ();
             wp.app_icon_name = "dev.sinty.edit";
-            wp.title    = "Edit";
-            wp.subtitle = "Open a file to get started";
+            wp.title    = _("Edit");
+            wp.subtitle = _("Open a file to get started");
             wp.add_action (
                 "document-new-symbolic",
                 "New File",
@@ -376,7 +376,7 @@ namespace Singularity.Apps {
             tab_container.remove_tab (tab);
             if (tab_container.get_n_pages () == 0) {
                 _root_stack.visible_child_name = "welcome";
-                set_title ("Edit");
+                set_title (_("Edit"));
             }
         }
 
@@ -397,13 +397,13 @@ namespace Singularity.Apps {
             box.margin_top    = 8;
             box.margin_bottom = 8;
 
-            box.append (new Label ("Go to line:"));
+            box.append (new Label (_("Go to line:")));
             var spin = new SpinButton.with_range (
                 1, tab.buffer.get_line_count (), 1);
             spin.width_chars = 6;
             box.append (spin);
 
-            var go_btn = new Button.with_label ("Go");
+            var go_btn = new Button.with_label (_("Go"));
             go_btn.add_css_class ("suggested-action");
             box.append (go_btn);
 
@@ -525,7 +525,7 @@ namespace Singularity.Apps {
                     var dot = new Label("\u2022");
                     dot.add_css_class("dim-label");
                     row.append(dot);
-                    var lbl = new Label(t.file != null ? t.file.get_basename() : "Untitled");
+                    var lbl = new Label(t.file != null ? t.file.get_basename() : _("Untitled"));
                     lbl.halign = Align.START;
                     lbl.hexpand = true;
                     row.append(lbl);
@@ -540,7 +540,7 @@ namespace Singularity.Apps {
                 }
             }
             if (n > 8) {
-                var more = new Label("(%d more...)".printf(n - 8));
+                var more = new Label(_("(%d more...)").printf(n - 8));
                 more.add_css_class("dim-label");
                 dlg.custom_area.append(more);
             }
@@ -783,7 +783,7 @@ namespace Singularity.Apps {
 
         private void _update_title () {
             var tab = get_current_tab ();
-            set_title (tab != null ? tab.title + " - Edit" : "Edit");
+            set_title (tab != null ? tab.title + _(" - Edit") : _("Edit"));
         }
 
         //  Session restore / save

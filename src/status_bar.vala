@@ -37,7 +37,7 @@ namespace Singularity.Apps {
 
             outline_btn = new Gtk.ToggleButton ();
             outline_btn.icon_name = "view-list-symbolic";
-            outline_btn.tooltip_text = "Toggle outline panel";
+            outline_btn.tooltip_text = _("Toggle outline panel");
             outline_btn.add_css_class ("flat");
             outline_btn.sensitive = false;
             outline_btn.toggled.connect (() => outline_toggled ());
@@ -71,18 +71,18 @@ namespace Singularity.Apps {
             var buf = tab.buffer;
             Gtk.TextIter cursor;
             buf.get_iter_at_mark (out cursor, buf.get_insert ());
-            pos_lbl.label = "Ln %d, Col %d".printf (
+            pos_lbl.label = _("Ln %d, Col %d").printf (
                 cursor.get_line () + 1, cursor.get_line_offset () + 1);
 
             var lang = buf.get_language ();
-            lang_lbl.label = (lang != null) ? lang.name : "Plain Text";
+            lang_lbl.label = (lang != null) ? lang.name : _("Plain Text");
 
             Gtk.TextIter ts, te;
             buf.get_bounds (out ts, out te);
             string txt = buf.get_text (ts, te, false);
-            eol_lbl.label   = ("\r\n" in txt) ? "CRLF" : (("\r" in txt) ? "CR" : "LF");
-            words_lbl.label = "%d words".printf (count_words (txt));
-            mode_lbl.label  = tab.view.overwrite ? "OVR" : "INS";
+            eol_lbl.label   = ("\r\n" in txt) ? _("CRLF") : (("\r" in txt) ? _("CR") : _("LF"));
+            words_lbl.label = _("%d words").printf (count_words (txt));
+            mode_lbl.label  = tab.view.overwrite ? _("OVR") : _("INS");
         }
 
         private static int count_words (string txt) {

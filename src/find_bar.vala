@@ -40,32 +40,32 @@ namespace Singularity.Apps {
             sr.margin_bottom = 4;
 
             search_entry = new Entry ();
-            search_entry.placeholder_text = "Find…";
+            search_entry.placeholder_text = _("Find…");
             search_entry.hexpand = true;
             search_entry.activate.connect (find_next);
 
             var prev_btn = new Button.from_icon_name ("go-up-symbolic");
             prev_btn.add_css_class ("flat");
-            prev_btn.tooltip_text = "Previous match";
+            prev_btn.tooltip_text = _("Previous match");
             prev_btn.clicked.connect (find_prev);
 
             var next_btn = new Button.from_icon_name ("go-down-symbolic");
             next_btn.add_css_class ("flat");
-            next_btn.tooltip_text = "Next match";
+            next_btn.tooltip_text = _("Next match");
             next_btn.clicked.connect (find_next);
 
             count_lbl = new Label ("");
             count_lbl.margin_start = 6;
             count_lbl.margin_end   = 6;
 
-            case_btn = new CheckButton.with_label ("Aa");
-            case_btn.tooltip_text = "Case sensitive";
+            case_btn = new CheckButton.with_label (_("Aa"));
+            case_btn.tooltip_text = _("Case sensitive");
             word_btn = new CheckButton.with_label ("\\b");
-            word_btn.tooltip_text = "Whole word";
+            word_btn.tooltip_text = _("Whole word");
             regex_btn = new CheckButton.with_label (".*");
-            regex_btn.tooltip_text = "Regular expression";
+            regex_btn.tooltip_text = _("Regular expression");
             wrap_btn  = new CheckButton.with_label ("↩");
-            wrap_btn.tooltip_text = "Wrap around";
+            wrap_btn.tooltip_text = _("Wrap around");
             wrap_btn.active = true;
 
             var close_btn = new Button.from_icon_name ("window-close-symbolic");
@@ -91,15 +91,15 @@ namespace Singularity.Apps {
             replace_box.visible       = false;
 
             replace_entry = new Entry ();
-            replace_entry.placeholder_text = "Replace…";
+            replace_entry.placeholder_text = _("Replace…");
             replace_entry.hexpand = true;
             replace_entry.activate.connect (replace_current);
 
-            var repl_btn = new Button.with_label ("Replace");
+            var repl_btn = new Button.with_label (_("Replace"));
             repl_btn.add_css_class ("flat");
             repl_btn.clicked.connect (replace_current);
 
-            var repl_all_btn = new Button.with_label ("Replace All");
+            var repl_all_btn = new Button.with_label (_("Replace All"));
             repl_all_btn.add_css_class ("flat");
             repl_all_btn.clicked.connect (replace_all);
 
@@ -138,7 +138,7 @@ namespace Singularity.Apps {
         private void update_count () {
             if (ctx == null) return;
             int n = ctx.get_occurrences_count ();
-            count_lbl.label = (n < 0) ? "" : "%d matches".printf (n);
+            count_lbl.label = (n < 0) ? "" : _("%d matches").printf (n);
         }
 
         public void show_find (bool replace_mode) {
@@ -206,7 +206,7 @@ namespace Singularity.Apps {
             if (ctx == null) return;
             try {
                 uint n = ctx.replace_all (replace_entry.text, -1);
-                count_lbl.label = "%u replaced".printf (n);
+                count_lbl.label = _("%u replaced").printf (n);
             } catch (Error e) {
                 warning ("Replace all: %s", e.message);
             }

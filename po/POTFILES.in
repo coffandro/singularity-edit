@@ -1,0 +1,14 @@
+# List of source files containing translatable strings.
+src/app.vala
+src/command_palette.vala
+src/editor_tab.vala
+src/file_browser_pane.vala
+src/find_bar.vala
+src/main.vala
+src/markdown.vala
+src/status_bar.vala
+src/ts_folding.vala
+src/ts_highlighter.vala
+src/ts_lang_registry.vala
+src/ts_outline.vala
+src/window.vala
