@@ -1,0 +1,42 @@
+{
+    "schema-id": "dev.sinty.edit",
+    "settings": [
+        {
+            "key": "color-scheme",
+            "label": "Color Scheme",
+            "type": "string",
+            "widget": "color-scheme-selector",
+            "theme-set": "edit"
+        },
+        {
+            "key": "font-name",
+            "label": "Font",
+            "type": "string",
+            "widget": "entry"
+        },
+        {
+            "key": "show-line-numbers",
+            "label": "Show Line Numbers",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "highlight-current-line",
+            "label": "Highlight Current Line",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "show-right-margin",
+            "label": "Show Right Margin",
+            "type": "boolean",
+            "widget": "switch"
+        },
+        {
+            "key": "wrap-text",
+            "label": "Wrap Text",
+            "type": "boolean",
+            "widget": "switch"
+        }
+    ]
+}

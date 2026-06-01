@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="dev.sinty.edit" path="/dev/sinty/edit/">
+    <key name="font-name" type="s">
+      <default>'Monospace 12'</default>
+      <summary>Font Name</summary>
+      <description>The font to use for the editor.</description>
+    </key>
+    <key name="show-line-numbers" type="b">
+      <default>true</default>
+      <summary>Show Line Numbers</summary>
+      <description>Whether to show line numbers.</description>
+    </key>
+    <key name="highlight-current-line" type="b">
+      <default>true</default>
+      <summary>Highlight Current Line</summary>
+      <description>Whether to highlight the current line.</description>
+    </key>
+    <key name="show-right-margin" type="b">
+      <default>false</default>
+      <summary>Show Right Margin</summary>
+      <description>Whether to show the right margin.</description>
+    </key>
+    <key name="right-margin-position" type="i">
+      <default>80</default>
+      <summary>Right Margin Position</summary>
+      <description>Column at which to draw the right margin line.</description>
+    </key>
+    <key name="wrap-text" type="b">
+      <default>false</default>
+      <summary>Wrap Text</summary>
+      <description>Whether to wrap text.</description>
+    </key>
+    <key name="color-scheme" type="s">
+      <default>'auto'</default>
+      <summary>Color Scheme</summary>
+      <description>The color scheme to use for the editor.</description>
+    </key>
+    <key name="tab-width" type="i">
+      <default>4</default>
+      <summary>Tab Width</summary>
+      <description>Width of a tab stop in spaces.</description>
+    </key>
+    <key name="use-spaces" type="b">
+      <default>true</default>
+      <summary>Use Spaces</summary>
+      <description>Whether to insert spaces instead of tabs.</description>
+    </key>
+    <key name="auto-save" type="b">
+      <default>false</default>
+      <summary>Auto Save</summary>
+      <description>Whether to automatically save files.</description>
+    </key>
+    <key name="auto-save-interval" type="i">
+      <default>60</default>
+      <summary>Auto Save Interval</summary>
+      <description>Interval in seconds between auto-saves.</description>
+    </key>
+    <key name="show-minimap" type="b">
+      <default>false</default>
+      <summary>Show Minimap</summary>
+      <description>Whether to show the code minimap.</description>
+    </key>
+    <key name="show-statusbar" type="b">
+      <default>true</default>
+      <summary>Show Statusbar</summary>
+      <description>Whether to show the status bar.</description>
+    </key>
+    <key name="show-whitespace" type="b">
+      <default>false</default>
+      <summary>Show Whitespace</summary>
+      <description>Whether to show whitespace characters.</description>
+    </key>
+    <key name="recent-files" type="as">
+      <default>[]</default>
+      <summary>Recent Files</summary>
+      <description>List of recently opened files (URIs).</description>
+    </key>
+    <key name="session-files" type="as">
+      <default>[]</default>
+      <summary>Session Files</summary>
+      <description>URIs of open files saved on quit for session restore.</description>
+    </key>
+    <key name="session-active" type="i">
+      <default>-1</default>
+      <summary>Session Active Tab</summary>
+      <description>Index of the active tab to restore on startup.</description>
+    </key>
+    <key name="sidebar-path" type="s">
+      <default>''</default>
+      <summary>Sidebar Path</summary>
+      <description>Last directory shown in the file browser sidebar.</description>
+    </key>
+    <key name="sidebar-visible" type="b">
+      <default>true</default>
+      <summary>Sidebar Visible</summary>
+      <description>Whether the file browser sidebar is visible.</description>
+    </key>
+  </schema>
+</schemalist>

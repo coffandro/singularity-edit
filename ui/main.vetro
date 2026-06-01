@@ -1,0 +1,9 @@
+Template(class: "SingularityAppsEditWindow", parent: "SingularityWidgetsWindow") {
+    HBox(id: "edit_ui_root", spacing: 0) {
+        VBox(id: "main_box", hexpand: true, vexpand: true, spacing: 0)
+
+        VBox(id: "sidebar_box", spacing: 0) {
+            VBox(id: "sidebar_content_host", spacing: 0, vexpand: true)
+        }
+    }
+}
