@@ -100,7 +100,6 @@ sources = files(
   'src/ts_highlighter.vala',
   'src/ts_outline.vala',
   'src/ts_folding.vala',
-  'src/command_palette.vala',
   'src/tree-sitter.vapi',
 )
 

@@ -71,7 +71,7 @@ namespace Singularity.Apps {
             buffer = new GtkSource.Buffer (null);
             buffer.highlight_matching_brackets = true;
 
-            view = new GtkSource.View.with_buffer (buffer);
+            view = new Singularity.Widgets.SourceView.with_buffer (buffer);
             view.monospace                       = true;
             view.auto_indent                     = true;
             view.smart_backspace                 = true;
