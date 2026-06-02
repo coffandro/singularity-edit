@@ -5,6 +5,7 @@ using Singularity.Widgets;
 
 namespace Singularity.Apps {
 
+    [GtkTemplate(ui = "/dev/sinty/edit/ui/main.ui")]
     public class EditWindow : Singularity.Widgets.Window {
 
         public Singularity.Widgets.TabContainer tab_container { get; private set; }
@@ -13,7 +14,7 @@ namespace Singularity.Apps {
         private GLib.Settings?  _settings;
         private StatusBar       _statusbar;
         private FileBrowserPane _file_browser;
-        private Stack           _root_stack;
+        [GtkChild (name = "root_stack")]   unowned Stack       _root_stack;
         private bool            _sidebar_visible = true;
         private bool            _minimap_visible = false;
         private int             _font_size_delta = 0;
@@ -22,7 +23,7 @@ namespace Singularity.Apps {
         private Gtk.Revealer    _outline_revealer;
         private ulong           _outline_tab_handler = 0;
         private EditorTab?      _outline_observed_tab = null;
-        private Gtk.Overlay     _root_overlay;
+        [GtkChild (name = "root_overlay")] unowned Gtk.Overlay _root_overlay;
         private CommandPalette  _palette;
         private Box             _editor_box;
         private Singularity.Widgets.HoverControls? _bubble_bar = null;
@@ -51,9 +52,7 @@ namespace Singularity.Apps {
             set_title (_("Edit"));
             set_default_size (1100, 700);
 
-            //  Stack: welcome ↔ editor
-            _root_stack = new Stack ();
-            _root_stack.transition_type     = StackTransitionType.CROSSFADE;
+            //  Stack: welcome / editor (root_overlay + root_stack from ui/main.vetro)
             _root_stack.transition_duration = 180;
 
             // Welcome page
@@ -108,12 +107,8 @@ namespace Singularity.Apps {
             _root_stack.add_named (_editor_box, "editor");
             _root_stack.visible_child_name = "welcome";
 
-            // Wrap root stack in an Overlay so the command palette can float
-            // above the editor (à la VS Code Ctrl+Shift+P, mirrors
-            // singularity-browser's spotlight pattern).
-            _root_overlay = new Gtk.Overlay ();
-            _root_overlay.set_child (_root_stack);
-
+            // root_overlay (from the template) lets the command palette float
+            // above the editor (à la VS Code Ctrl+Shift+P).
             _palette = new CommandPalette ();
             _palette.close_requested.connect (_hide_palette);
             _root_overlay.add_overlay (_palette);
@@ -191,6 +186,8 @@ namespace Singularity.Apps {
             _tab_chips = new Singularity.Widgets.ChipBar ();
             _tab_chips.add_css_class ("edit-bottom-tabs");
             _tab_chips.hexpand = true;
+            // Tabs can be reordered by dragging the chips.
+            _tab_chips.reorderable = true;
             // File names are precious - show them in full; the bar
             // scrolls horizontally when tabs overflow.
             _tab_chips.ellipsize_labels = false;
@@ -208,6 +205,15 @@ namespace Singularity.Apps {
             _tab_chips.chip_closed.connect ((id) => {
                 var t = _chip_to_tab.lookup (id);
                 if (t != null) _request_close_tab (t);
+            });
+            // Mirror a chip drag-reorder onto the underlying notebook pages.
+            _tab_chips.chips_reordered.connect ((ids) => {
+                _suppress_chip_sync = true;
+                for (int i = 0; i < ids.length; i++) {
+                    var t = _chip_to_tab.lookup (ids[i]);
+                    if (t != null) tab_container.notebook.reorder_child (t, i);
+                }
+                _suppress_chip_sync = false;
             });
             _editor_box.append (_tab_chips);
         }
