@@ -43,6 +43,7 @@ namespace Singularity.Apps {
             search_entry.placeholder_text = _("Find…");
             search_entry.hexpand = true;
             search_entry.activate.connect (find_next);
+            Singularity.Widgets.ContextMenu.attach_editable (search_entry);
 
             var prev_btn = new Button.from_icon_name ("go-up-symbolic");
             prev_btn.add_css_class ("flat");
@@ -94,6 +95,7 @@ namespace Singularity.Apps {
             replace_entry.placeholder_text = _("Replace…");
             replace_entry.hexpand = true;
             replace_entry.activate.connect (replace_current);
+            Singularity.Widgets.ContextMenu.attach_editable (replace_entry);
 
             var repl_btn = new Button.with_label (_("Replace"));
             repl_btn.add_css_class ("flat");
