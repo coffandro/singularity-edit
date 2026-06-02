@@ -27,19 +27,21 @@ namespace Singularity.Apps {
             set_menubar (build_app_menu ());
 
             // Re-apply colour scheme when accent or dark-mode changes
-            desktop_settings = new GLib.Settings ("dev.sinty.desktop");
-            desktop_settings.changed["accent-color"].connect ((_k) => {
-                if (settings != null && settings.get_string ("color-scheme") == "auto")
-                    edit_win?.refresh_all_schemes ();
-            });
-            desktop_settings.changed["custom-accent-color"].connect ((_k) => {
-                if (settings != null && settings.get_string ("color-scheme") == "auto")
-                    edit_win?.refresh_all_schemes ();
-            });
-            desktop_settings.changed["dark-mode"].connect ((_k) => {
-                if (settings != null && settings.get_string ("color-scheme") == "auto")
-                    edit_win?.refresh_all_schemes ();
-            });
+            desktop_settings = Singularity.Core.safe_settings ("dev.sinty.desktop");
+            if (desktop_settings != null) {
+                desktop_settings.changed["accent-color"].connect ((_k) => {
+                    if (settings != null && settings.get_string ("color-scheme") == "auto")
+                        edit_win?.refresh_all_schemes ();
+                });
+                desktop_settings.changed["custom-accent-color"].connect ((_k) => {
+                    if (settings != null && settings.get_string ("color-scheme") == "auto")
+                        edit_win?.refresh_all_schemes ();
+                });
+                desktop_settings.changed["dark-mode"].connect ((_k) => {
+                    if (settings != null && settings.get_string ("color-scheme") == "auto")
+                        edit_win?.refresh_all_schemes ();
+                });
+            }
         }
 
         private GLib.Menu build_app_menu () {
